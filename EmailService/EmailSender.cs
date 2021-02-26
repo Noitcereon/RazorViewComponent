@@ -1,4 +1,6 @@
-﻿using MailKit.Net.Smtp;
+﻿using System.Collections.Generic;
+using System.Linq;
+using MailKit.Net.Smtp;
 using MimeKit;
 
 namespace EmailService
@@ -40,9 +42,13 @@ namespace EmailService
 
         private MimeMessage CreateEmail(EmailModel mailModel)
         {
+            IEnumerable<string> singleEmailRecipent = new List<string> {mailModel.To};
+            var emailReceivers = new List<MailboxAddress>();
+            emailReceivers.AddRange(singleEmailRecipent.Select(tempEmail => new MailboxAddress(tempEmail)));
+
             var email = new MimeMessage();
             email.From.Add(new MailboxAddress(_emailConfig.From));
-            email.To.AddRange(mailModel.To);
+            email.To.AddRange(emailReceivers);
             email.Subject = mailModel.Subject;
             email.Body = new TextPart(MimeKit.Text.TextFormat.Text) { Text = mailModel.Body };
 

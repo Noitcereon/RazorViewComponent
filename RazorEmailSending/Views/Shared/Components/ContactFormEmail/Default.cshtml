@@ -1,8 +1,8 @@
 ﻿@* ContactFormEmail Component *@
+@using System.Collections
 @model EmailService.EmailModel
-
-<h2>Contact us!</h2>
-<form asp-action="Invoke">
+<h2>Contact form</h2>
+<form asp-action="SendEmail" asp-controller="Email">
     <div class="form-group">
         <label>To</label>
         <input type="text" asp-for="To" class="form-control"/>
@@ -15,5 +15,5 @@
         <label>Message</label>
         <textarea class="form-control" asp-for="Body"></textarea>
     </div>
-    <button type="submit" class="btn btn-primary">Send mail</button>
+    <input type="submit" class="btn btn-primary" value="Send mail"/>
 </form>

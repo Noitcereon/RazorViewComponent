@@ -12,19 +12,14 @@ namespace RazorEmailSending.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IEmailSender _emailSender;
 
-        public HomeController(IEmailSender emailSender)
+        public HomeController()
         {
-            _emailSender = emailSender;
+           
         }
 
-        public IActionResult Index(EmailModel email)
+        public IActionResult Index()
         {
-            if (email != null)
-            {
-                _emailSender.SendEmail(email);
-            }
             return View();
         }
 

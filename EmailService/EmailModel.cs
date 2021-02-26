@@ -8,7 +8,7 @@ namespace EmailService
     public class EmailModel
     {
         [Required]
-        public List<MailboxAddress> To { get; set; }
+        public string To { get; set; }
 
         [Required]
         public string Subject { get; set; }
@@ -16,11 +16,12 @@ namespace EmailService
         [Required]
         public string Body { get; set; }
 
-        public EmailModel(IEnumerable<string> to, string subject, string body)
+        public EmailModel(string to, string subject, string body)
         {
-            To = new List<MailboxAddress>();
+            //To = new List<MailboxAddress>();
 
-            To.AddRange(to.Select(x => new MailboxAddress(x)));
+            //To.AddRange(to.Select(x => new MailboxAddress(x)));
+            To = to;
             Subject = subject;
             Body = body;
         }
